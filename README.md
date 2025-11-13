@@ -3,7 +3,7 @@ Simple command-line Tic-Tac-Toe in Python — user vs computer, win/draw detecti
 A simple command-line Tic-Tac-Toe game written in Python.  
 Player is 'O' (user) and the computer plays 'X'. The game supports:
 - User input for moves (1–9)
-- Random computer moves (avoids occupied cells)
+- Random computer moves 
 - Win detection for rows, columns and diagonals
 - Draw detection (no free cells left)
 - $ python tic_tac_toe.py
@@ -11,7 +11,22 @@ Player is 'O' (user) and the computer plays 'X'. The game supports:
 [4, X, 6]
 [7, 8, 9]
 
+Enter your move (1–9): 6
+Free: [(0, 0), (0, 2), (1, 0), (2, 0), (2, 1), (2, 2)]
 
+[1, 'x', 3]
+[4, 'x', 'o']
+[7, 8, 9]
+
+Enter your move (1–9): 1
+Free: [(0, 2), (1, 0), (2, 0), (2, 2)]
+
+['o', 'x', 3]
+[4, 'x', 'o']
+[7, 'x', 9]
+
+computer won
+Computer won!
 Example gameplay:
 Board squares are numbered 1–9 (row-major).
 You enter the number of the square where you want to place 'O'.
