@@ -1,0 +1,165 @@
+from random import randrange
+
+def display_board(board):
+    for row in board:
+        print(row)
+
+def enter_move(board):
+    o_box = int(input("Enter your move (1–9): "))
+    if o_box == 1:
+        if board[0][0] in ['x', 'o']:
+            print("taken")
+        else:
+            board[0][0] = 'o'
+    elif o_box == 2:
+        if board[0][1] in ['x', 'o']:
+            print("taken")
+        else:
+            board[0][1] = 'o'
+    elif o_box == 3:
+        if board[0][2] in ['x', 'o']:
+            print("taken")
+        else:
+            board[0][2] = 'o'
+    elif o_box == 4:
+        if board[1][0] in ['x', 'o']:
+            print("taken")
+        else:
+            board[1][0] = 'o'
+    elif o_box == 5:
+        if board[1][1] in ['x', 'o']:
+            print("taken")
+        else:
+            board[1][1] = 'o'
+    elif o_box == 6:
+        if board[1][2] in ['x', 'o']:
+            print("taken")
+        else:
+            board[1][2] = 'o'
+    elif o_box == 7:
+        if board[2][0] in ['x', 'o']:
+            print("taken")
+        else:
+            board[2][0] = 'o'
+    elif o_box == 8:
+        if board[2][1] in ['x', 'o']:
+            print("taken")
+        else:
+            board[2][1] = 'o'
+    elif o_box == 9:
+        if board[2][2] in ['x', 'o']:
+            print("taken")
+        else:
+            board[2][2] = 'o'
+
+    # computer move
+    x_box = randrange(1, 10)
+        
+        
+    if x_box == 1:
+        if board[0][0] == 'x' or board[0][0] == 'o':
+             print("taken")
+        else:
+             board[0][0] = 'x'
+    elif x_box == 2:
+        if board[0][1] == 'x' or board[0][1] == 'o':
+            print("taken")
+        else:
+            board[0][1] = 'x'
+    elif x_box == 3:
+        if board[0][2] == 'x' or board[0][2] == 'o':
+            print("taken")
+        else:
+            board[0][2] = 'x'
+    elif x_box == 4:
+        if board[1][0] == 'x' or board[1][0] == 'o':
+            print("taken")
+        else:
+            board[1][0] = 'x'
+    elif x_box == 6:
+        if board[1][2] == 'x' or board[1][2] == 'o':
+            print("taken")
+        else:
+            board[1][2] = 'x'
+    elif x_box == 7:
+        if board[2][0] == 'x' or board[2][0] == 'o':
+            print("taken")
+        else:
+            board[2][0] = 'x'
+    elif x_box == 8:
+        if board[2][1] == 'x' or board[2][1] == 'o':
+            print("taken")
+        else:
+            board[2][1] = 'x'
+    elif x_box == 9:
+        if board[2][2] == 'x' or board[2][2] == 'o':
+            print("taken")
+        else:
+            board[2][2] = 'x'
+
+def make_list_of_free_fields(board):
+    empt = []
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] not in ['x', 'o']:
+                empt.append((i, j))
+    print("Free:", empt)
+
+def victory_for(board, sign):
+    win_patterns = [
+        [[0,0], [0,1], [0,2]],
+        [[1,0], [1,1], [1,2]],
+        [[2,0], [2,1], [2,2]],
+        [[0,0], [1,0], [2,0]],
+        [[0,1], [1,1], [2,1]],
+        [[0,2], [1,2], [2,2]],
+        [[0,0], [1,1], [2,2]],
+        [[0,2], [1,1], [2,0]]
+    ]
+    for i in range(len(win_patterns)):
+        count = 0
+        for j in range(3):  # each cell in the pattern
+            row, col = win_patterns[i][j]
+            if board[row][col] == sign:
+                count += 1
+
+        # Check if all 3 match
+        if count == 3:
+            if sign == 'x':
+                print("computer won")
+            elif sign == 'o':
+                print("you won")
+            return True
+
+    return None
+
+def draw_move(board):
+    # Check if all cells are filled
+    full = all(cell in sign for row in board for cell in row)
+    
+    # If full and no winner
+    if full and not victory_for(board, 'x') and not victory_for(board, 'o'):
+        print("Draw")
+        return True
+    else:
+        return None
+
+# main
+board = [[1,2,3],[4,'x',6],[7,8,9]]
+display_board(board)
+sign=['x'or'o']
+for i in range(9):
+    enter_move(board)
+    make_list_of_free_fields(board)
+    display_board(board)
+    
+    if victory_for(board, 'x'):
+        print("Computer won!")
+        break
+    elif victory_for(board, 'o'):
+        print("You won!")
+        break
+    elif draw_move(board)!=None:
+        print("Draw!")
+        break
+
